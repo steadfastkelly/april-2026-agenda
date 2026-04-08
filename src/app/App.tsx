@@ -7,6 +7,7 @@ import { FilterProvider } from "./components/filter-context";
 import { DesktopFilterBar, MobileFilterBar } from "./components/filter-bar";
 import { useIsMobile } from "./components/use-is-mobile";
 import { Legend, MobileLegend } from "./components/legend";
+import { AddTimeBlockModal } from "./components/add-time-block-modal";
 import { Loader2 } from "lucide-react";
 import { Toaster } from "sonner";
 
@@ -28,7 +29,13 @@ function LoadingOverlay() {
 
 function AppContent() {
   const isMobile = useIsMobile();
-  const { loading } = useSchedule();
+  const { loading, editingEventId, clearEditing, prefill, setPrefill } = useSchedule();
+
+  const isModalOpen = !!editingEventId || !!prefill;
+  const handleModalClose = () => {
+    clearEditing();
+    setPrefill(null);
+  };
 
   return (
     <div
@@ -107,6 +114,15 @@ function AppContent() {
           </footer>
         </div>
       )}
+
+      {/* ── Edit / Add Time Block Modal ─────────────────────── */}
+      <AddTimeBlockModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        editingId={editingEventId}
+        prefillDay={prefill?.day}
+        prefillStartHour={prefill?.startHour}
+      />
 
       {/* ── Toast ───────────────────────────────────────────── */}
       <Toaster

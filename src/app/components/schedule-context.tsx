@@ -3,11 +3,12 @@ import {
   events as initialEvents,
   type ScheduleEvent,
 } from "./schedule-data";
-import { type EventDetail } from "./event-details";
+import { type EventDetail, eventDetails } from "./event-details";
 
 // ── Mutable detail store ───────────────────────────────────────────
-// We keep a runtime copy so new events can register detail metadata.
-const runtimeDetails: Record<string, EventDetail> = {};
+// Pre-populated with static event details; extended at runtime when
+// events are added or edited via the modal.
+const runtimeDetails: Record<string, EventDetail> = { ...eventDetails };
 
 export function getEventDetail(id: string): EventDetail | undefined {
   return runtimeDetails[id];

@@ -125,7 +125,7 @@ export const TIME_LABELS = [
 export const events: ScheduleEvent[] = [
   // ─── Monday 4/20 ───────────────────────────────────────────────────
   {
-    id: "mon-1-new",
+    id: "mon-1",
     day: 0,
     startHour: 9,
     endHour: 10,
@@ -135,7 +135,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Free time",
   },
   {
-    id: "mon-2-new",
+    id: "mon-2",
     day: 0,
     startHour: 10,
     endHour: 12.5,
@@ -145,7 +145,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Software Interview",
   },
   {
-    id: "mon-3-new",
+    id: "mon-3",
     day: 0,
     startHour: 12.5,
     endHour: 13,
@@ -155,7 +155,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Lunch",
   },
   {
-    id: "mon-4-new",
+    id: "mon-4",
     day: 0,
     startHour: 14,
     endHour: 18,
@@ -167,7 +167,7 @@ export const events: ScheduleEvent[] = [
 
   // ─── Tuesday 4/21 ──────────────────────────────────────────────────
   {
-    id: "tue-1-new",
+    id: "tue-1",
     day: 1,
     startHour: 9,
     endHour: 10,
@@ -177,7 +177,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Production 24 hours",
   },
   {
-    id: "tue-2-new",
+    id: "tue-2",
     day: 1,
     startHour: 10,
     endHour: 12,
@@ -188,7 +188,7 @@ export const events: ScheduleEvent[] = [
     titleLight: "Handling UI Event + Delegation",
   },
   {
-    id: "tue-3-new",
+    id: "tue-3",
     day: 1,
     startHour: 12,
     endHour: 12.5,
@@ -198,7 +198,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Lunch",
   },
   {
-    id: "tue-4-new",
+    id: "tue-4",
     day: 1,
     startHour: 13.5,
     endHour: 15,
@@ -209,7 +209,7 @@ export const events: ScheduleEvent[] = [
     titleLight: "Handling UI Event + Delegation",
   },
   {
-    id: "tue-5-new",
+    id: "tue-5",
     day: 1,
     startHour: 15,
     endHour: 18,
@@ -221,7 +221,7 @@ export const events: ScheduleEvent[] = [
 
   // ─── Wednesday 4/22 ────────────────────────────────────────────────
   {
-    id: "wed-1-new",
+    id: "wed-1",
     day: 2,
     startHour: 9,
     endHour: 10.5,
@@ -231,7 +231,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Revision",
   },
   {
-    id: "wed-2-new",
+    id: "wed-2",
     day: 2,
     startHour: 10.5,
     endHour: 12,
@@ -242,7 +242,7 @@ export const events: ScheduleEvent[] = [
     titleLight: "Handling UI Event + Delegation",
   },
   {
-    id: "wed-3-new",
+    id: "wed-3",
     day: 2,
     startHour: 12,
     endHour: 12.5,
@@ -252,7 +252,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Lunch",
   },
   {
-    id: "wed-4-new",
+    id: "wed-4",
     day: 2,
     startHour: 12.5,
     endHour: 14,
@@ -262,7 +262,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Sprint",
   },
   {
-    id: "wed-5-new",
+    id: "wed-5",
     day: 2,
     startHour: 14,
     endHour: 17.5,
@@ -272,7 +272,7 @@ export const events: ScheduleEvent[] = [
     titleDark: "Production 24 hours",
   },
   {
-    id: "wed-6-new",
+    id: "wed-6",
     day: 2,
     startHour: 17.5,
     endHour: 18,
@@ -284,7 +284,7 @@ export const events: ScheduleEvent[] = [
 
   // ─── Thursday 4/23 ─────────────────────────────────────────────────
   {
-    id: "thu-1-new",
+    id: "thu-1",
     day: 3,
     startHour: 9,
     endHour: 10,
@@ -295,7 +295,7 @@ export const events: ScheduleEvent[] = [
     titleLight: "Organizing",
   },
   {
-    id: "thu-2-new",
+    id: "thu-2",
     day: 3,
     startHour: 10,
     endHour: 12,
@@ -306,7 +306,7 @@ export const events: ScheduleEvent[] = [
     titleLight: "Organizing",
   },
   {
-    id: "thu-3-new",
+    id: "thu-3",
     day: 3,
     startHour: 14,
     endHour: 17.5,
@@ -317,7 +317,7 @@ export const events: ScheduleEvent[] = [
     titleLight: "Organizing",
   },
   {
-    id: "thu-4-new",
+    id: "thu-4",
     day: 3,
     startHour: 17.5,
     endHour: 18,
