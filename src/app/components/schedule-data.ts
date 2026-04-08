@@ -91,15 +91,14 @@ export const HOUR_HEIGHT = 150;
 export const START_HOUR = 9;
 export const END_HOUR = 21;
 export const TOTAL_HOURS = END_HOUR - START_HOUR;
-export const DAY_LABELS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+export const DAY_LABELS = ["Monday", "Tuesday", "Wednesday", "Thursday"];
 
-/** Full date labels for mobile (April 20–24, 2026) */
+/** Full date labels for mobile (April 20–23, 2026) */
 export const DAY_DATE_LABELS = [
   "Monday, April 20",
   "Tuesday, April 21",
   "Wednesday, April 22",
   "Thursday, April 23",
-  "Friday, April 24",
 ];
 
 /** Short date labels for compact mobile tabs */
@@ -108,7 +107,6 @@ export const DAY_SHORT_DATE_LABELS = [
   "Tue 4/21",
   "Wed 4/22",
   "Thu 4/23",
-  "Fri 4/24",
 ];
 
 export const TIME_COLUMN_WIDTH = 152;
@@ -411,17 +409,6 @@ export const events: ScheduleEvent[] = [
     hideTypeLabel: true,
   },
 
-  // ─── Friday 4/24 ───────────────────────────────────────────────────
-  {
-    id: "fri-1",
-    day: 4,
-    startHour: 9,
-    endHour: 21,
-    category: "BREAK",
-    badge: null,
-    title: "Remote Work Day",
-    hideTypeLabel: true,
-  },
 ];
 
 // ── Overlap Detection & Positioning ────────────────────────────────

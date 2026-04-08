@@ -210,10 +210,4 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(12.5, 21),
   },
 
-  // ─── Friday 4/24 ─────────────────────────────────────────────────
-  "fri-1": {
-    fullDescription: "Remote work day. Work from home — no office requirements.",
-    requiredAttendees: everyone,
-    timeLabel: formatTimeRange(9, 21),
-  },
 };
