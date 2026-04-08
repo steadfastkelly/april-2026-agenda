@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { motion, useMotionValue, useTransform } from "motion/react";
-import { X, Pencil, Clock, MapPin, Users, User, Mic } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { X, Pencil, Clock, MapPin, Users, User, Mic, Info } from "lucide-react";
 import { type PositionedEvent, COLOR_HEX } from "./schedule-data";
 import { type EventDetail } from "./event-details";
 import { getEventDetail } from "./schedule-context";
@@ -11,7 +11,7 @@ import {
   DEPARTMENT_COLORS,
   type Department,
 } from "./people-data";
-import { Avatar, AvatarGroup, NamedAvatarList } from "./avatar";
+import { AvatarGroup, NamedAvatarList } from "./avatar";
 
 // ── Shared tokens ──────────────────────────────────────────────────
 const font = "'Inter', sans-serif";
@@ -27,11 +27,11 @@ function SectionLabel({
 }) {
   return (
     <div className="flex items-center gap-[6px] mb-[8px]">
-      <Icon size={14} className="text-[#838281] shrink-0" />
+      <Icon size={13} className="text-[#838281] shrink-0" />
       <span
         style={{
           fontFamily: font,
-          fontSize: "11px",
+          fontSize: "10px",
           fontWeight: 700,
           color: "#838281",
           letterSpacing: "0.8px",
@@ -85,38 +85,20 @@ export function MobileDetailModal({
   const detail: EventDetail | undefined = getEventDetail(event.id);
   const accentHex = COLOR_HEX[event.color];
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [isDismissing, setIsDismissing] = useState(false);
 
-  // Swipe-to-dismiss state
-  const dragY = useMotionValue(0);
-  const modalOpacity = useTransform(dragY, [0, 300], [1, 0.3]);
-  const modalScale = useTransform(dragY, [0, 300], [1, 0.92]);
-  const backdropOpacity = useTransform(dragY, [0, 300], [1, 0]);
-
-  const DISMISS_THRESHOLD = 120;
-
-  // Lock body scroll
+  // Lock body scroll while open
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    return () => { document.body.style.overflow = prev; };
   }, []);
 
-  // Focus close button on mount
+  // Focus close button on mount + Escape to close + tab trap
   useEffect(() => {
     closeRef.current?.focus();
-  }, []);
-
-  // Back button / Escape + Tab trap
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    const tabTrap = (e: KeyboardEvent) => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { onClose(); return; }
       if (e.key !== "Tab") return;
-      // Find the portal container (the motion.div)
       const portal = closeRef.current?.closest('[role="dialog"]');
       if (!portal) return;
       const focusable = portal.querySelectorAll<HTMLElement>(
@@ -125,35 +107,24 @@ export function MobileDetailModal({
       if (focusable.length === 0) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     };
-    document.addEventListener("keydown", handler);
-    document.addEventListener("keydown", tabTrap);
-    return () => {
-      document.removeEventListener("keydown", handler);
-      document.removeEventListener("keydown", tabTrap);
-    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  // Collect departments
+  // Collect departments from attendees
   const departments = new Set<Department>();
   if (detail) {
     detail.requiredAttendees.forEach((id) => {
       const p = people[id];
       if (p) departments.add(p.department);
     });
-    if (detail.presenters) {
-      detail.presenters.forEach((id) => {
-        const p = people[id];
-        if (p) departments.add(p.department);
-      });
-    }
+    detail.presenters?.forEach((id) => {
+      const p = people[id];
+      if (p) departments.add(p.department);
+    });
   }
 
   const eventTitle =
@@ -161,60 +132,51 @@ export function MobileDetailModal({
     [event.titleDark, event.titleLight?.trim()].filter(Boolean).join(" ");
 
   return createPortal(
-    <>
+    <AnimatePresence>
       {/* Backdrop */}
       <motion.div
+        key="backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        style={{ opacity: backdropOpacity }}
-        className="fixed inset-0 z-[9998] bg-black/40"
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 z-[9998]"
+        style={{ backgroundColor: "rgba(0,0,0,0.65)", backdropFilter: "blur(4px)" }}
         onClick={onClose}
       />
+
+      {/* Centered popup card */}
       <motion.div
-        initial={{ opacity: 0, y: "100%" }}
-        animate={{ opacity: isDismissing ? 0 : 1, y: isDismissing ? "100%" : 0 }}
-        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-        className="fixed inset-0 z-[9999] flex flex-col"
-        style={{
-          backgroundColor: "#1e1e1d",
-          y: dragY,
-          opacity: modalOpacity,
-          scale: modalScale,
-          borderRadius: dragY.get() > 0 ? 16 : 0,
-        }}
-        drag="y"
-        dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={{ top: 0, bottom: 0.6 }}
-        onDragEnd={(_, info) => {
-          if (info.offset.y > DISMISS_THRESHOLD || info.velocity.y > 500) {
-            setIsDismissing(true);
-            setTimeout(onClose, 250);
-          } else {
-            dragY.set(0);
-          }
-        }}
+        key="card"
+        initial={{ opacity: 0, scale: 0.95, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 12 }}
+        transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
         role="dialog"
         aria-modal="true"
         aria-label={`Details for ${eventTitle}`}
+        className="fixed z-[9999] flex flex-col"
+        style={{
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "calc(100vw - 60px)",  /* 30px padding each side */
+          maxHeight: "calc(100dvh - 60px)",
+          backgroundColor: "#1e1e1d",
+          border: "1px solid #3a3a39",
+          borderRadius: 12,
+          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+          overflow: "hidden",
+        }}
       >
-        {/* Swipe handle indicator */}
-        <div className="flex justify-center pt-[8px] pb-[4px] shrink-0 cursor-grab active:cursor-grabbing">
-          <div
-            className="rounded-full"
-            style={{ width: 36, height: 4, backgroundColor: "#464544" }}
-          />
-        </div>
-
         {/* Accent bar */}
-        <div style={{ height: 4, backgroundColor: accentHex, flexShrink: 0 }} />
+        <div style={{ height: 3, backgroundColor: accentHex, flexShrink: 0 }} />
 
-        {/* Header bar */}
+        {/* Header */}
         <div
-          className="flex items-center justify-between px-[16px] py-[12px] shrink-0"
-          style={{ borderBottom: "1px solid #3a3a39" }}
+          className="flex items-center justify-between shrink-0"
+          style={{ padding: "14px 20px", borderBottom: "1px solid #3a3a39" }}
         >
-          {/* Category label — left-aligned */}
           <span
             style={{
               fontFamily: font,
@@ -228,151 +190,100 @@ export function MobileDetailModal({
             {event.category}
           </span>
 
-          {/* Right side: Edit + Close */}
           <div className="flex items-center gap-[8px]">
             {onEdit && (
               <button
                 type="button"
                 onClick={onEdit}
-                className="flex items-center gap-[6px] rounded-full px-[14px]"
+                className="flex items-center gap-[6px] rounded-full px-[12px]"
                 style={{
-                  minHeight: 44,
+                  minHeight: 36,
                   backgroundColor: "#2a2a29",
                   border: "none",
                   cursor: "pointer",
                 }}
                 aria-label="Edit event"
               >
-                <Pencil size={14} color="#c2ab74" />
-                <span
-                  style={{
-                    fontFamily: font,
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    color: "#c2ab74",
-                  }}
-                >
+                <Pencil size={13} color="#c2ab74" />
+                <span style={{ fontFamily: font, fontSize: "12px", fontWeight: 700, color: "#c2ab74" }}>
                   Edit
                 </span>
               </button>
             )}
-
             <button
               ref={closeRef}
               type="button"
               onClick={onClose}
-              className="flex items-center justify-center rounded-full"
-              style={{
-                width: 44,
-                height: 44,
-                backgroundColor: "#2a2a29",
-                border: "none",
-                cursor: "pointer",
-              }}
+              className="flex items-center justify-center rounded-full transition-colors"
+              style={{ width: 36, height: 36, backgroundColor: "#2a2a29", border: "none", cursor: "pointer" }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#3a3a39"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#2a2a29"; }}
               aria-label="Close"
             >
-              <X size={18} color="#f4f4f4" />
+              <X size={16} color="#f4f4f4" />
             </button>
           </div>
         </div>
 
-        {/* Scrollable body */}
-        <div className="flex-1 overflow-y-auto overscroll-contain">
-          <div className="px-[20px] py-[24px] flex flex-col gap-[20px]">
-            {/* Title */}
-            <div>
-              {eventTitle && (
-                <p
-                  style={{
-                    fontFamily: fontSerif,
-                    fontSize: "20px",
-                    lineHeight: 1.3,
-                    letterSpacing: "0.3px",
-                    fontWeight: 700,
-                    color: "#f4f4f4",
-                  }}
-                >
-                  {eventTitle}
-                </p>
-              )}
-            </div>
+        {/* Scrollable body — 30px padding */}
+        <div className="flex-1 overflow-y-auto overscroll-contain" style={{ padding: 30 }}>
+          <div className="flex flex-col gap-[20px]">
 
-            {/* Description */}
-            {detail && (
+            {/* Title */}
+            {eventTitle && (
               <p
                 style={{
-                  fontFamily: font,
-                  fontSize: "14px",
-                  lineHeight: 1.6,
-                  color: "#b0afae",
+                  fontFamily: fontSerif,
+                  fontSize: "18px",
+                  lineHeight: 1.35,
+                  letterSpacing: "0.3px",
+                  fontWeight: 700,
+                  color: "#f4f4f4",
                 }}
               >
-                {detail.fullDescription}
+                {eventTitle}
               </p>
             )}
 
-            {/* Fallback for events without detail */}
-            {!detail && event.description && (
+            {/* Description */}
+            {(detail?.fullDescription || event.description) && (
               <p
                 style={{
                   fontFamily: font,
-                  fontSize: "14px",
+                  fontSize: "13px",
                   lineHeight: 1.6,
                   color: "#b0afae",
                 }}
               >
-                {event.description}
+                {detail?.fullDescription ?? event.description}
               </p>
             )}
 
             <Divider />
 
             {/* Time */}
-            {detail && (
+            {detail?.timeLabel && (
               <div>
                 <SectionLabel icon={Clock} label="Time" />
-                <p
-                  style={{
-                    fontFamily: font,
-                    fontSize: "15px",
-                    fontWeight: 600,
-                    color: "#f4f4f4",
-                  }}
-                >
+                <p style={{ fontFamily: font, fontSize: "14px", fontWeight: 600, color: "#f4f4f4" }}>
                   {detail.timeLabel}
                 </p>
               </div>
             )}
 
             {/* Location */}
-            {detail?.location && (
+            {(detail?.location || event.locationAddress) && (
               <div>
                 <SectionLabel icon={MapPin} label="Location" />
-                <p
-                  style={{
-                    fontFamily: font,
-                    fontSize: "14px",
-                    lineHeight: 1.5,
-                    color: "#f4f4f4",
-                  }}
-                >
-                  {detail.location.split("\n").map((line, i, arr) => (
-                    <span key={i}>
-                      {line}
-                      {i < arr.length - 1 && <br />}
-                    </span>
+                <p style={{ fontFamily: font, fontSize: "13px", lineHeight: 1.5, color: "#f4f4f4" }}>
+                  {(detail?.location ?? event.locationAddress)!.split("\n").map((line, i, arr) => (
+                    <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
                   ))}
                 </p>
-                {detail.locationNote && (
+                {detail?.locationNote && (
                   <p
-                    className="mt-[6px]"
-                    style={{
-                      fontFamily: font,
-                      fontSize: "12px",
-                      lineHeight: 1.4,
-                      color: "#838281",
-                      fontStyle: "italic",
-                    }}
+                    className="mt-[4px]"
+                    style={{ fontFamily: font, fontSize: "12px", lineHeight: 1.4, color: "#838281", fontStyle: "italic" }}
                   >
                     {detail.locationNote}
                   </p>
@@ -380,24 +291,20 @@ export function MobileDetailModal({
               </div>
             )}
 
-            {/* Location fallback from event data */}
-            {!detail?.location && event.locationAddress && (
+            {/* More Details */}
+            {detail?.moreDetails && (
               <div>
-                <SectionLabel icon={MapPin} label="Location" />
+                <SectionLabel icon={Info} label="More Details" />
                 <p
                   style={{
                     fontFamily: font,
-                    fontSize: "14px",
-                    lineHeight: 1.5,
-                    color: "#f4f4f4",
+                    fontSize: "13px",
+                    lineHeight: 1.6,
+                    color: "#b0afae",
+                    whiteSpace: "pre-line",
                   }}
                 >
-                  {event.locationAddress.split("\n").map((line, i, arr) => (
-                    <span key={i}>
-                      {line}
-                      {i < arr.length - 1 && <br />}
-                    </span>
-                  ))}
+                  {detail.moreDetails}
                 </p>
               </div>
             )}
@@ -408,7 +315,7 @@ export function MobileDetailModal({
                 <Divider />
                 <div>
                   <SectionLabel icon={Users} label="Departments" />
-                  <div className="flex flex-wrap gap-[8px]">
+                  <div className="flex flex-wrap gap-[6px]">
                     {Array.from(departments).map((dept) => (
                       <DeptBadge key={dept} dept={dept} />
                     ))}
@@ -422,58 +329,35 @@ export function MobileDetailModal({
               <>
                 <Divider />
                 <div>
-                  <SectionLabel
-                    icon={Mic}
-                    label={
-                      detail.presenters.length > 1 ? "Presenters" : "Presenter"
-                    }
-                  />
+                  <SectionLabel icon={Mic} label={detail.presenters.length > 1 ? "Presenters" : "Presenter"} />
                   <NamedAvatarList personIds={detail.presenters} />
                 </div>
               </>
             )}
 
-            {/* Required */}
+            {/* Required attendees */}
             {detail && detail.requiredAttendees.length > 0 && (
               <>
                 <Divider />
                 <div>
-                  <SectionLabel
-                    icon={Users}
-                    label={`Required (${detail.requiredAttendees.length})`}
-                  />
-                  <AvatarGroup
-                    personIds={detail.requiredAttendees}
-                    max={10}
-                    size={32}
-                    gap="gap-[6px]"
-                  />
+                  <SectionLabel icon={Users} label={`Required (${detail.requiredAttendees.length})`} />
+                  <AvatarGroup personIds={detail.requiredAttendees} max={10} size={32} gap="gap-[6px]" />
                 </div>
               </>
             )}
 
-            {/* Optional */}
+            {/* Optional attendees */}
             {detail?.optionalAttendees && detail.optionalAttendees.length > 0 && (
               <div>
-                <SectionLabel
-                  icon={User}
-                  label={`Optional (${detail.optionalAttendees.length})`}
-                />
-                <AvatarGroup
-                  personIds={detail.optionalAttendees}
-                  max={10}
-                  size={32}
-                  gap="gap-[6px]"
-                />
+                <SectionLabel icon={User} label={`Optional (${detail.optionalAttendees.length})`} />
+                <AvatarGroup personIds={detail.optionalAttendees} max={10} size={32} gap="gap-[6px]" />
               </div>
             )}
 
-            {/* Bottom spacer for safe area */}
-            <div style={{ height: 40 }} />
           </div>
         </div>
       </motion.div>
-    </>,
+    </AnimatePresence>,
     document.body,
   );
 }

@@ -17,6 +17,7 @@ import {
   TITLE_DARK_COLOR,
   DAY_DATE_LABELS,
   DAY_SHORT_DATE_LABELS,
+  DAY_LABELS,
   computePositionedEvents,
   type PositionedEvent,
 } from "./schedule-data";
@@ -118,7 +119,7 @@ function MobileEventCard({
   const labelColor = LABEL_COLOR[event.color];
   const titleDarkColor = TITLE_DARK_COLOR[event.color];
   const eventLabel = event.titleDark || event.titleLight || event.title || event.category;
-  const isTappable = event.category !== "BREAK";
+  const isTappable = true;
 
   const handleTap = useCallback(() => {
     if (isTappable) onTap(event);
@@ -360,16 +361,16 @@ function DayNavBar({
 
       <button
         type="button"
-        onClick={() => onSelect(Math.min(3, activeDay + 1))}
-        disabled={activeDay === 3}
+        onClick={() => onSelect(Math.min(DAY_LABELS.length - 1, activeDay + 1))}
+        disabled={activeDay === DAY_LABELS.length - 1}
         className="flex items-center justify-center shrink-0 rounded-[8px] transition-all active:scale-95"
         style={{
           width: 44,
           height: 44,
-          backgroundColor: activeDay === 3 ? "transparent" : "#2a2a29",
+          backgroundColor: activeDay === DAY_LABELS.length - 1 ? "transparent" : "#2a2a29",
           border: "none",
-          cursor: activeDay === 3 ? "default" : "pointer",
-          opacity: activeDay === 3 ? 0.3 : 1,
+          cursor: activeDay === DAY_LABELS.length - 1 ? "default" : "pointer",
+          opacity: activeDay === DAY_LABELS.length - 1 ? 0.3 : 1,
         }}
         aria-label="Next day"
       >
@@ -536,7 +537,7 @@ export function MobileSchedule() {
 
   const positionedEvents = useMemo(() => {
     const allPositioned: PositionedEvent[] = [];
-    for (let day = 0; day < 4; day++) {
+    for (let day = 0; day < DAY_LABELS.length; day++) {
       const dayEvts = events.filter((e) => e.day === day);
       allPositioned.push(...computePositionedEvents(dayEvts));
     }
@@ -588,7 +589,7 @@ export function MobileSchedule() {
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft" && activeDay > 0) {
       navigateDay(activeDay - 1);
-    } else if (e.key === "ArrowRight" && activeDay < 3) {
+    } else if (e.key === "ArrowRight" && activeDay < DAY_LABELS.length - 1) {
       navigateDay(activeDay + 1);
     }
   }, [activeDay, navigateDay]);
