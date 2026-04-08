@@ -193,15 +193,8 @@ function MobileEventCard({
           </p>
         )}
 
-        {/* Badge */}
-        {event.badge && (
-          <div className="flex gap-[6px] items-center">
-            <Badge type={event.badge} />
-          </div>
-        )}
-
         {/* Title */}
-        {(event.titleDark || event.titleLight) && (
+        {(event.titleDark || event.titleLight || event.title) && (
           <p
             className="italic w-full overflow-hidden"
             style={{
@@ -235,28 +228,9 @@ function MobileEventCard({
                 ))}
               </span>
             )}
-          </p>
-        )}
-
-        {/* Custom content */}
-        {event.customContent === "teamBuilding" && <MobileTeamBuildingContent />}
-
-        {/* Description */}
-        {event.description && (
-          <p
-            className="not-italic w-full overflow-hidden"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "10px",
-              lineHeight: 1.3,
-              letterSpacing: "0.2px",
-              color: "white",
-              display: "-webkit-box",
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: "vertical" as const,
-            }}
-          >
-            {event.description}
+            {event.title && !event.titleDark && !event.titleLight && (
+              <span style={{ color: "white" }}>{event.title}</span>
+            )}
           </p>
         )}
 
@@ -275,9 +249,8 @@ function MobileEventCard({
               WebkitBoxOrient: "vertical" as const,
             }}
           >
-            <span style={{ fontWeight: 700 }}>{event.locationLabel}</span>{" "}
             {event.locationAddress &&
-              event.locationAddress.split("\n").map((line, i, arr) => (
+              event.locationAddress.split("\n").map((line, i) => (
                 <span key={i}>
                   {i === 0 ? line : (
                     <>
@@ -288,23 +261,6 @@ function MobileEventCard({
                 </span>
               ))}
           </p>
-        )}
-
-        {/* Tap hint */}
-        {isTappable && (
-          <div className="mt-auto pt-[4px]">
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "9px",
-                fontWeight: 600,
-                color: "rgba(255,255,255,0.35)",
-                letterSpacing: "0.3px",
-              }}
-            >
-              Tap for details
-            </span>
-          </div>
         )}
       </div>
     </div>

@@ -133,42 +133,39 @@ export function MobileDetailModal({
 
   return createPortal(
     <AnimatePresence>
-      {/* Backdrop */}
+      {/* Backdrop + centering wrapper */}
       <motion.div
         key="backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
-        className="fixed inset-0 z-[9998]"
+        className="fixed inset-0 z-[9998] flex items-center justify-center"
         style={{ backgroundColor: "rgba(0,0,0,0.65)", backdropFilter: "blur(4px)" }}
         onClick={onClose}
-      />
-
-      {/* Centered popup card */}
-      <motion.div
-        key="card"
-        initial={{ opacity: 0, scale: 0.95, y: 12 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 12 }}
-        transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
-        role="dialog"
-        aria-modal="true"
-        aria-label={`Details for ${eventTitle}`}
-        className="fixed z-[9999] flex flex-col"
-        style={{
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "calc(100vw - 60px)",  /* 30px padding each side */
-          maxHeight: "calc(100dvh - 60px)",
-          backgroundColor: "#1e1e1d",
-          border: "1px solid #3a3a39",
-          borderRadius: 12,
-          boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
-          overflow: "hidden",
-        }}
       >
+        {/* Centered popup card — stopPropagation so clicks inside don't close */}
+        <motion.div
+          key="card"
+          initial={{ opacity: 0, scale: 0.95, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 12 }}
+          transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Details for ${eventTitle}`}
+          className="flex flex-col"
+          style={{
+            width: "calc(100vw - 60px)",  /* 30px padding each side */
+            maxHeight: "calc(100dvh - 60px)",
+            backgroundColor: "#1e1e1d",
+            border: "1px solid #3a3a39",
+            borderRadius: 12,
+            boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+            overflow: "hidden",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
         {/* Accent bar */}
         <div style={{ height: 3, backgroundColor: accentHex, flexShrink: 0 }} />
 
@@ -356,6 +353,7 @@ export function MobileDetailModal({
 
           </div>
         </div>
+        </motion.div>
       </motion.div>
     </AnimatePresence>,
     document.body,
