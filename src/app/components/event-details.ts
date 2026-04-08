@@ -101,9 +101,15 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(10, 11),
     location: "The Loading Dock",
   },
-  "tue-3": {
-    fullDescription: "Team block and meetings — Split Teams working on Boilerplate.",
-    requiredAttendees: everyone,
+  "tue-3a": {
+    fullDescription: "Design + Dev team meeting — Boilerplate.",
+    requiredAttendees: ["kelly", "kayla", "joy", "jen", "rachel", "miranda", "carson", "jack", "ben"],
+    timeLabel: formatTimeRange(11, 12.5),
+    location: "The Loading Dock",
+  },
+  "tue-3b": {
+    fullDescription: "AM team meeting — Boilerplate.",
+    requiredAttendees: ["jake", "brittney", "rebecca"],
     timeLabel: formatTimeRange(11, 12.5),
     location: "The Loading Dock",
   },
@@ -194,9 +200,15 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(9, 10),
     location: "The Loading Dock",
   },
-  "thu-2": {
-    fullDescription: "Final team block and meetings — Split Teams wrapping up the week.",
-    requiredAttendees: everyone,
+  "thu-2a": {
+    fullDescription: "Design + Dev team meeting — Split Teams.",
+    requiredAttendees: ["kelly", "kayla", "joy", "jen", "rachel", "miranda", "carson", "jack", "ben"],
+    timeLabel: formatTimeRange(10, 11.5),
+    location: "The Loading Dock",
+  },
+  "thu-2b": {
+    fullDescription: "AM team meeting — Split Teams.",
+    requiredAttendees: ["jake", "brittney", "rebecca"],
     timeLabel: formatTimeRange(10, 11.5),
     location: "The Loading Dock",
   },
