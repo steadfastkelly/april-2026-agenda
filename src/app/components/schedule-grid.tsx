@@ -603,7 +603,7 @@ export function ScheduleGrid() {
           <ColumnHeaderRow isTablet={isTablet} />
           <div className="flex">
             <TimeColumnBody />
-            {[0, 1, 2, 3].map((day) => (
+            {DAY_LABELS.map((_, day) => (
               <DayColumnBody
                 key={day}
                 dayIndex={day}
