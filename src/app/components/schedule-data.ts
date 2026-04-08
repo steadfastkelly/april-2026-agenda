@@ -83,6 +83,7 @@ export interface ScheduleEvent {
   locationAddress?: string;
   locationNote?: string;
   hideTypeLabel?: boolean;
+  hideTitle?: boolean;
   customContent?: "teamBuilding";
 }
 

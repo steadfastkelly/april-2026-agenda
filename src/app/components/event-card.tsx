@@ -219,7 +219,7 @@ export function EventCard({
 
       {/* Details section — category + title + location only */}
       <div className="flex flex-col gap-[10px] items-start w-full min-w-0 overflow-hidden">
-        {(event.titleDark || event.titleLight || event.title) && (
+        {!event.hideTitle && (event.titleDark || event.titleLight || event.title) && (
           <p
             className="italic w-full overflow-hidden"
             style={{

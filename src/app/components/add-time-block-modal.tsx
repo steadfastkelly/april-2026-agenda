@@ -180,13 +180,13 @@ interface FormState {
   description: string; locationName: string; locationAddress: string;
   moreDetails: string;
   requiredAttendees: string[]; optionalAttendees: string[]; presenters: string[];
-  departments: Department[]; showBadge: boolean; badgeType: BadgeType;
+  departments: Department[]; showBadge: boolean; badgeType: BadgeType; hideTitle: boolean;
 }
 const initialForm: FormState = {
   title: "", category: "MEETING", day: 0, startTime: 9, endTime: 10, description: "",
   locationName: "", locationAddress: "", moreDetails: "",
   requiredAttendees: [], optionalAttendees: [],
-  presenters: [], departments: [], showBadge: false, badgeType: "logo",
+  presenters: [], departments: [], showBadge: false, badgeType: "logo", hideTitle: false,
 };
 
 interface ValidationErrors { title?: string; time?: string; attendees?: string; }
@@ -228,6 +228,7 @@ function buildFormFromEvent(evt: ScheduleEvent, detail?: EventDetail): FormState
     departments: [],
     showBadge: !!evt.badge,
     badgeType: evt.badge || "logo",
+    hideTitle: !!evt.hideTitle,
   };
 }
 
@@ -314,7 +315,8 @@ export function AddTimeBlockModal({
     const buildEvent = (id: string): ScheduleEvent => ({
       id, day: form.day, startHour: form.startTime, endHour: form.endTime,
       category: form.category, badge: form.showBadge ? form.badgeType : null,
-      titleLight: form.title, description: form.description || undefined,
+      titleLight: form.title, hideTitle: form.hideTitle || undefined,
+      description: form.description || undefined,
       locationLabel: form.locationName ? "Location:" : undefined,
       locationAddress: form.locationName ? (form.locationAddress ? `${form.locationName}\n${form.locationAddress}` : form.locationName) : undefined,
     });
@@ -435,7 +437,10 @@ export function AddTimeBlockModal({
 
                 <SectionDivider label="Display Options" />
                 <div><FieldLabel>Department Tags</FieldLabel><DepartmentTagSelect selected={form.departments} onChange={(d) => update("departments", d)} /></div>
-                <div className="flex gap-[24px]"><Toggle checked={form.showBadge} onChange={(v) => update("showBadge", v)} label="Show badge" /></div>
+                <div className="flex gap-[24px]">
+                  <Toggle checked={form.showBadge} onChange={(v) => update("showBadge", v)} label="Show badge" />
+                  <Toggle checked={form.hideTitle} onChange={(v) => update("hideTitle", v)} label="Hide title on card" />
+                </div>
                 {form.showBadge && (
                   <div><FieldLabel>Badge Type</FieldLabel>
                     <div className="flex gap-[8px]">

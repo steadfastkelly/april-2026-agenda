@@ -194,7 +194,7 @@ function MobileEventCard({
         )}
 
         {/* Title */}
-        {(event.titleDark || event.titleLight || event.title) && (
+        {!event.hideTitle && (event.titleDark || event.titleLight || event.title) && (
           <p
             className="italic w-full overflow-hidden"
             style={{
