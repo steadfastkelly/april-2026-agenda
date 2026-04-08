@@ -10,6 +10,8 @@ export interface EventDetail {
   timeLabel: string; // e.g. "9:00 AM – 10:00 AM"
   location?: string;
   locationNote?: string;
+  /** Extra notes shown below location in the detail panel */
+  moreDetails?: string;
 }
 
 /** Convert decimal hour to display string, e.g. 13.5 → "1:30 PM" */

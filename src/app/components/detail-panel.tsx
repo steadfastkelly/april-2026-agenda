@@ -2,7 +2,7 @@ import { type PositionedEvent, COLOR_HEX } from "./schedule-data";
 import { type EventDetail } from "./event-details";
 import { getEventDetail, useSchedule } from "./schedule-context";
 import { people, DEPARTMENT_LABELS, DEPARTMENT_COLORS, type Department } from "./people-data";
-import { Clock, MapPin, Users, User, Mic, Pencil, X } from "lucide-react";
+import { Clock, MapPin, Users, User, Mic, Pencil, X, Info } from "lucide-react";
 import { Avatar, AvatarGroup } from "./avatar";
 
 // ── Name List (for small groups / optional attendees) ──────────────
@@ -238,6 +238,28 @@ export function DetailPanel({ event, onClose }: { event: PositionedEvent; onClos
               </p>
             )}
           </div>
+        )}
+
+        {/* More Details */}
+        {detail.moreDetails && (
+          <>
+            <PanelDivider />
+            <div>
+              <SectionLabel icon={Info} label="More Details" />
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "12px",
+                  lineHeight: 1.6,
+                  color: "#b0afae",
+                  whiteSpace: "pre-line",
+                  wordBreak: "break-word" as const,
+                }}
+              >
+                {detail.moreDetails}
+              </p>
+            </div>
+          </>
         )}
 
         {/* Department badges */}

@@ -178,12 +178,14 @@ function SectionDivider({ label }: { label: string }) {
 interface FormState {
   title: string; category: EventCategory; day: number; startTime: number; endTime: number;
   description: string; locationName: string; locationAddress: string;
+  moreDetails: string;
   requiredAttendees: string[]; optionalAttendees: string[]; presenters: string[];
   departments: Department[]; showBadge: boolean; badgeType: BadgeType;
 }
 const initialForm: FormState = {
   title: "", category: "MEETING", day: 0, startTime: 9, endTime: 10, description: "",
-  locationName: "", locationAddress: "", requiredAttendees: [], optionalAttendees: [],
+  locationName: "", locationAddress: "", moreDetails: "",
+  requiredAttendees: [], optionalAttendees: [],
   presenters: [], departments: [], showBadge: false, badgeType: "logo",
 };
 
@@ -219,6 +221,7 @@ function buildFormFromEvent(evt: ScheduleEvent, detail?: EventDetail): FormState
     description: detail?.fullDescription || evt.description || "",
     locationName: locName,
     locationAddress: locAddr,
+    moreDetails: detail?.moreDetails || "",
     requiredAttendees: detail?.requiredAttendees || [],
     optionalAttendees: detail?.optionalAttendees || [],
     presenters: detail?.presenters || [],
@@ -323,6 +326,7 @@ export function AddTimeBlockModal({
       timeLabel: formatTimeRange(form.startTime, form.endTime),
       location: form.locationName || undefined,
       locationNote: form.locationAddress || undefined,
+      moreDetails: form.moreDetails.trim() || undefined,
     });
 
     if (isEditing && editingId) {
@@ -420,6 +424,9 @@ export function AddTimeBlockModal({
                   <div className="flex-1"><FieldLabel>Location Name</FieldLabel><TextInput value={form.locationName} onChange={(v) => update("locationName", v)} placeholder="e.g. The Loading Dock" /></div>
                   <div className="flex-1"><FieldLabel>Address</FieldLabel><TextInput value={form.locationAddress} onChange={(v) => update("locationAddress", v)} placeholder="e.g. 123 Main St." /></div>
                 </div>
+
+                <SectionDivider label="More Details" />
+                <div><FieldLabel>Additional Notes</FieldLabel><TextArea value={form.moreDetails} onChange={(v) => update("moreDetails", v)} placeholder="Any extra info to show on the detail card…" rows={3} /></div>
 
                 <SectionDivider label="People" />
                 <div><PersonMultiSelect selected={form.requiredAttendees} onChange={(ids) => update("requiredAttendees", ids)} label={`Required Attendees ${form.category === "MEETING" ? "*" : ""}`} /><FieldError message={errors.attendees} /></div>
