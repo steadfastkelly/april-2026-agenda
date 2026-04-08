@@ -2,7 +2,7 @@ import { type PositionedEvent, COLOR_HEX } from "./schedule-data";
 import { type EventDetail } from "./event-details";
 import { getEventDetail, useSchedule } from "./schedule-context";
 import { people, DEPARTMENT_LABELS, DEPARTMENT_COLORS, type Department } from "./people-data";
-import { Clock, MapPin, Users, User, Mic, Pencil } from "lucide-react";
+import { Clock, MapPin, Users, User, Mic, Pencil, X } from "lucide-react";
 import { Avatar, AvatarGroup } from "./avatar";
 
 // ── Name List (for small groups / optional attendees) ──────────────
@@ -69,7 +69,7 @@ function PanelDivider() {
 }
 
 // ── Main Detail Panel ──────────────────────────────────────────────
-export function DetailPanel({ event }: { event: PositionedEvent }) {
+export function DetailPanel({ event, onClose }: { event: PositionedEvent; onClose?: () => void }) {
   const detail: EventDetail | undefined = getEventDetail(event.id);
   const { requestEdit } = useSchedule();
   if (!detail) return null;
@@ -104,8 +104,9 @@ export function DetailPanel({ event }: { event: PositionedEvent }) {
       <div style={{ height: 3, backgroundColor: accentHex }} />
 
       <div className="p-[20px] flex flex-col gap-[16px]">
-        {/* Category + Title */}
-        <div>
+        {/* Category + Title row with close button */}
+        <div className="flex items-start justify-between gap-[8px]">
+          <div className="flex-1 min-w-0">
           <span
             style={{
               fontFamily: "'Inter', sans-serif",
@@ -134,6 +135,20 @@ export function DetailPanel({ event }: { event: PositionedEvent }) {
               {event.titleDark || ""}
               {event.titleLight ? ` ${event.titleLight.trim()}` : ""}
             </p>
+          )}
+          </div>
+          {onClose && (
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); onClose(); }}
+              className="flex items-center justify-center rounded-[6px] shrink-0 transition-colors"
+              style={{ width: 28, height: 28, backgroundColor: "transparent", border: "none", cursor: "pointer" }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#3a3a39"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
+              aria-label="Close"
+            >
+              <X size={14} color="#838281" />
+            </button>
           )}
         </div>
 

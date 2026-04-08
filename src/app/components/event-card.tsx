@@ -423,6 +423,7 @@ export function EventCard({
           anchorRef={cardRef}
           onMouseEnter={handlePanelMouseEnter}
           onMouseLeave={handlePanelMouseLeave}
+          onClose={() => { setIsPinned(false); setIsOpen(false); }}
         />
       )}
     </>
@@ -437,11 +438,13 @@ function PortalPanelWrapper({
   anchorRef,
   onMouseEnter,
   onMouseLeave,
+  onClose,
 }: {
   event: PositionedEvent;
   anchorRef: React.RefObject<HTMLDivElement | null>;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  onClose: () => void;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -501,7 +504,7 @@ function PortalPanelWrapper({
       role="dialog"
       aria-label={`Details for ${event.titleDark || event.titleLight || event.title || event.category}`}
     >
-      <DetailPanel event={event} />
+      <DetailPanel event={event} onClose={onClose} />
     </div>,
     document.body,
   );
