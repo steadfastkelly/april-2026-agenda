@@ -149,32 +149,20 @@ export function EventCard({
     }
   }, []);
 
-  const open = useCallback(() => {
-    if (!hasDetail) return;
-    clearCloseTimer();
-    setIsOpen(true);
-  }, [hasDetail, clearCloseTimer]);
-
-  const scheduleClose = useCallback(() => {
-    if (isPinned) return; // Don't auto-close if pinned
-    clearCloseTimer();
-    closeTimerRef.current = setTimeout(() => setIsOpen(false), 250);
-  }, [clearCloseTimer, isPinned]);
-
-  // Click to toggle pin
+  // Click to toggle open/close
   const handleClick = useCallback((e: React.MouseEvent) => {
     if (!hasDetail) return;
     e.stopPropagation(); // prevent empty cell click
-    if (isPinned) {
+    if (isOpen) {
       setIsPinned(false);
       setIsOpen(false);
     } else {
       setIsPinned(true);
       setIsOpen(true);
     }
-  }, [hasDetail, isPinned]);
+  }, [hasDetail, isOpen]);
 
-  // Keyboard: Escape to close, Enter/Space to toggle pin
+  // Keyboard: Escape to close, Enter/Space to toggle
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -184,7 +172,7 @@ export function EventCard({
       }
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        if (isPinned) {
+        if (isOpen) {
           setIsPinned(false);
           setIsOpen(false);
         } else {
@@ -193,7 +181,7 @@ export function EventCard({
         }
       }
     },
-    [isPinned],
+    [isOpen],
   );
 
   useEffect(() => {
@@ -202,14 +190,6 @@ export function EventCard({
     };
   }, []);
 
-  // Keep the panel alive when mouse moves to it
-  const handlePanelMouseEnter = useCallback(() => {
-    clearCloseTimer();
-  }, [clearCloseTimer]);
-
-  const handlePanelMouseLeave = useCallback(() => {
-    if (!isPinned) scheduleClose();
-  }, [scheduleClose, isPinned]);
 
   // ── Render ────────────────────────────────────────────────────────
   const bgHex = COLOR_HEX[event.color];
@@ -237,15 +217,9 @@ export function EventCard({
         </p>
       )}
 
-      {/* Details section */}
-      <div className="flex flex-col gap-[12px] items-start w-full min-w-0 overflow-hidden">
-        {event.badge && (
-          <div className="flex gap-[8px] items-center">
-            <Badge type={event.badge} />
-          </div>
-        )}
-
-        {(event.titleDark || event.titleLight) && (
+      {/* Details section — category + title + location only */}
+      <div className="flex flex-col gap-[10px] items-start w-full min-w-0 overflow-hidden">
+        {(event.titleDark || event.titleLight || event.title) && (
           <p
             className="italic w-full overflow-hidden"
             style={{
@@ -262,43 +236,20 @@ export function EventCard({
             {event.titleDark && (
               <span style={{ color: titleDarkColor }}>
                 {event.titleDark.split("\n").map((line, i, arr) => (
-                  <span key={i}>
-                    {line}
-                    {i < arr.length - 1 && <br />}
-                  </span>
+                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
                 ))}
               </span>
             )}
             {event.titleLight && (
               <span style={{ color: "white" }}>
                 {event.titleLight.split("\n").map((line, i, arr) => (
-                  <span key={i}>
-                    {line}
-                    {i < arr.length - 1 && <br />}
-                  </span>
+                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
                 ))}
               </span>
             )}
-          </p>
-        )}
-
-        {event.customContent === "teamBuilding" && <TeamBuildingContent />}
-
-        {event.description && (
-          <p
-            className="not-italic w-full overflow-hidden"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "12px",
-              lineHeight: 1.3,
-              letterSpacing: "0.24px",
-              color: "white",
-              display: "-webkit-box",
-              WebkitLineClamp: 4,
-              WebkitBoxOrient: "vertical" as const,
-            }}
-          >
-            {event.description}
+            {event.title && !event.titleDark && !event.titleLight && (
+              <span style={{ color: "white" }}>{event.title}</span>
+            )}
           </p>
         )}
 
@@ -313,28 +264,9 @@ export function EventCard({
               color: "white",
             }}
           >
-            <span style={{ fontWeight: 700 }}>{event.locationLabel}</span>{" "}
-            {event.locationAddress &&
-              event.locationAddress.split("\n").map((line, i, arr) => (
-                <span key={i}>
-                  {i === 0 ? line : <><br />{line}</>}
-                </span>
-              ))}
-          </p>
-        )}
-
-        {event.locationNote && (
-          <p
-            className="not-italic w-full"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "11px",
-              lineHeight: 1.3,
-              letterSpacing: "0.22px",
-              color: "rgba(255,255,255,0.7)",
-            }}
-          >
-            {event.locationNote}
+            {event.locationAddress?.split("\n").map((line, i) => (
+              <span key={i}>{i === 0 ? line : <><br />{line}</>}</span>
+            ))}
           </p>
         )}
       </div>
@@ -377,10 +309,6 @@ export function EventCard({
         aria-label={`${eventLabel}${hasDetail ? ", click to pin details" : ""}`}
         aria-expanded={hasDetail ? isOpen : undefined}
         aria-haspopup={hasDetail ? "dialog" : undefined}
-        onMouseEnter={open}
-        onMouseLeave={scheduleClose}
-        onFocus={open}
-        onBlur={scheduleClose}
         onKeyDown={handleKeyDown}
         onClick={handleClick}
       >
@@ -421,8 +349,6 @@ export function EventCard({
         <PortalPanelWrapper
           event={event}
           anchorRef={cardRef}
-          onMouseEnter={handlePanelMouseEnter}
-          onMouseLeave={handlePanelMouseLeave}
           onClose={() => { setIsPinned(false); setIsOpen(false); }}
         />
       )}
@@ -436,14 +362,10 @@ export function EventCard({
 function PortalPanelWrapper({
   event,
   anchorRef,
-  onMouseEnter,
-  onMouseLeave,
   onClose,
 }: {
   event: PositionedEvent;
   anchorRef: React.RefObject<HTMLDivElement | null>;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
   onClose: () => void;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -499,8 +421,6 @@ function PortalPanelWrapper({
         pointerEvents: "auto",
         transition: "opacity 180ms ease-out",
       }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
       role="dialog"
       aria-label={`Details for ${event.titleDark || event.titleLight || event.title || event.category}`}
     >

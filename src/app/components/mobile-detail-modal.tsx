@@ -242,6 +242,20 @@ export function MobileDetailModal({
               </p>
             )}
 
+            {/* Description */}
+            {(detail?.fullDescription || event.description) && (
+              <p
+                style={{
+                  fontFamily: font,
+                  fontSize: "13px",
+                  lineHeight: 1.6,
+                  color: "#b0afae",
+                }}
+              >
+                {detail?.fullDescription ?? event.description}
+              </p>
+            )}
+
             <Divider />
 
             {/* Time */}
