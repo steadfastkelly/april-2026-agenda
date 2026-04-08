@@ -152,20 +152,6 @@ export function DetailPanel({ event, onClose }: { event: PositionedEvent; onClos
           )}
         </div>
 
-        {/* Description */}
-        <p
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "12px",
-            lineHeight: 1.5,
-            color: "#b0afae",
-            wordBreak: "break-word" as const,
-            overflowWrap: "break-word" as const,
-          }}
-        >
-          {detail.fullDescription}
-        </p>
-
         {/* Edit button */}
         <button
           type="button"
