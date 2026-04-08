@@ -1,0 +1,46 @@
+APRIL 2026 TEAM WEEK AGENDA - PACKAGE CONTENTS
+================================================
+
+This archive contains a complete, production-ready React application.
+
+WHAT'S INCLUDED:
+----------------
+
+✓ Complete source code (src/)
+✓ All React components and TypeScript files
+✓ Tailwind CSS v4 styling system
+✓ 21 pre-configured team events (April 20-23, 2026)
+✓ Responsive design (desktop, tablet, mobile)
+✓ Drag-and-drop functionality
+✓ Department filtering system
+✓ Avatar component with initials
+✓ Package configuration files
+✓ Vite build configuration
+✓ README with setup instructions
+
+NOT INCLUDED (you'll install these):
+-------------------------------------
+
+✗ node_modules/ (run 'pnpm install' to get dependencies)
+✗ Build output (run 'pnpm build' to generate)
+
+QUICK START:
+------------
+
+1. Extract the archive:
+   tar -xzf april-2026-agenda.tar.gz
+
+2. Install dependencies:
+   cd april-2026-agenda
+   pnpm install
+
+3. Run development server:
+   pnpm dev
+
+4. Open http://localhost:5173
+
+FILE COUNT:
+-----------
+99
+
+For detailed documentation, see README.md
