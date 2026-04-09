@@ -5,10 +5,24 @@ import {
 } from "./schedule-data";
 import { type EventDetail, eventDetails } from "./event-details";
 
+// ── localStorage keys ──────────────────────────────────────────────
+const LS_EVENTS = "agenda-events";
+const LS_DETAILS = "agenda-details";
+
 // ── Mutable detail store ───────────────────────────────────────────
 // Pre-populated with static event details; extended at runtime when
 // events are added or edited via the modal.
 const runtimeDetails: Record<string, EventDetail> = { ...eventDetails };
+
+// Merge any previously saved details on top (saved details win over
+// static defaults, so edits made through the UI survive page reloads)
+try {
+  const raw = localStorage.getItem(LS_DETAILS);
+  if (raw) {
+    const saved = JSON.parse(raw) as Record<string, EventDetail>;
+    Object.assign(runtimeDetails, saved);
+  }
+} catch { /* ignore parse/storage errors */ }
 
 export function getEventDetail(id: string): EventDetail | undefined {
   return runtimeDetails[id];
@@ -16,6 +30,23 @@ export function getEventDetail(id: string): EventDetail | undefined {
 
 export function registerEventDetail(id: string, detail: EventDetail) {
   runtimeDetails[id] = detail;
+}
+
+// ── Persistence helpers ────────────────────────────────────────────
+function loadEvents(): ScheduleEvent[] {
+  try {
+    const raw = localStorage.getItem(LS_EVENTS);
+    if (raw) return JSON.parse(raw) as ScheduleEvent[];
+  } catch { /* ignore */ }
+  return initialEvents;
+}
+
+function persistEvents(evts: ScheduleEvent[]) {
+  try { localStorage.setItem(LS_EVENTS, JSON.stringify(evts)); } catch { /* ignore */ }
+}
+
+function persistDetails() {
+  try { localStorage.setItem(LS_DETAILS, JSON.stringify(runtimeDetails)); } catch { /* ignore */ }
 }
 
 // ── Context ────────────────────────────────────────────────────────
@@ -32,40 +63,62 @@ interface ScheduleContextValue {
   /** Pre-fill data for creating a new event from a grid cell click */
   prefill: { day: number; startHour: number } | null;
   setPrefill: (data: { day: number; startHour: number } | null) => void;
+  /** Wipe localStorage and restore hardcoded defaults */
+  resetToDefaults: () => void;
 }
 
 const ScheduleContext = createContext<ScheduleContextValue | null>(null);
 
 export function ScheduleProvider({ children }: { children: ReactNode }) {
-  const [events, setEvents] = useState<ScheduleEvent[]>(initialEvents);
-  const [loading] = useState(false); // No loading needed for local data
+  // Lazy initializer: use saved events if present, else hardcoded defaults
+  const [events, setEvents] = useState<ScheduleEvent[]>(() => loadEvents());
+  const [loading] = useState(false);
   const [editingEventId, setEditingEventId] = useState<string | null>(null);
   const [prefill, setPrefillState] = useState<{ day: number; startHour: number } | null>(null);
 
   const addEvent = useCallback((evt: ScheduleEvent, detail?: EventDetail) => {
-    setEvents((prev) => [...prev, evt]);
+    setEvents((prev) => {
+      const next = [...prev, evt];
+      persistEvents(next);
+      return next;
+    });
     if (detail) {
       registerEventDetail(evt.id, detail);
+      persistDetails();
     }
   }, []);
 
   const updateEvent = useCallback(
     (id: string, patch: Partial<Pick<ScheduleEvent, "day" | "startHour" | "endHour">>) => {
-      setEvents((prev) => prev.map((e) => (e.id === id ? { ...e, ...patch } : e)));
+      setEvents((prev) => {
+        const next = prev.map((e) => (e.id === id ? { ...e, ...patch } : e));
+        persistEvents(next);
+        return next;
+      });
     },
     [],
   );
 
   const editFullEvent = useCallback((id: string, evt: ScheduleEvent, detail?: EventDetail) => {
-    setEvents((prev) => prev.map((e) => (e.id === id ? evt : e)));
+    setEvents((prev) => {
+      const next = prev.map((e) => (e.id === id ? evt : e));
+      persistEvents(next);
+      return next;
+    });
     if (detail) {
       registerEventDetail(id, detail);
+      persistDetails();
     }
   }, []);
 
   const deleteEvent = useCallback((id: string) => {
-    setEvents((prev) => prev.filter((e) => e.id !== id));
+    setEvents((prev) => {
+      const next = prev.filter((e) => e.id !== id);
+      persistEvents(next);
+      return next;
+    });
     delete runtimeDetails[id];
+    persistDetails();
   }, []);
 
   const requestEdit = useCallback((eventId: string) => {
@@ -80,11 +133,23 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     setPrefillState(data);
   }, []);
 
+  const resetToDefaults = useCallback(() => {
+    try {
+      localStorage.removeItem(LS_EVENTS);
+      localStorage.removeItem(LS_DETAILS);
+    } catch { /* ignore */ }
+    // Reset runtimeDetails back to static defaults
+    Object.keys(runtimeDetails).forEach((k) => delete runtimeDetails[k]);
+    Object.assign(runtimeDetails, eventDetails);
+    setEvents(initialEvents);
+  }, []);
+
   return (
     <ScheduleContext.Provider value={{
       events, loading, addEvent, updateEvent, editFullEvent, deleteEvent,
       requestEdit, editingEventId, clearEditing,
       prefill, setPrefill,
+      resetToDefaults,
     }}>
       {children}
     </ScheduleContext.Provider>
