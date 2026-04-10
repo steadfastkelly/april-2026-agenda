@@ -32,7 +32,7 @@ export function Header() {
           letterSpacing: "3.2px",
         }}
       >
-        APRIL 20 – 24, 2026
+        APRIL 20 – 23, 2026
       </p>
     </div>
   );
