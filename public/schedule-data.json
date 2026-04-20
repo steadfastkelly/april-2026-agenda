@@ -325,11 +325,11 @@
     {
       "id": "custom-1775766191174",
       "day": 1,
-      "startHour": 10,
-      "endHour": 11,
+      "startHour": 16.25,
+      "endHour": 17,
       "category": "MEETING",
       "badge": null,
-      "titleLight": "Kelly + Kayla: Slab Organization",
+      "titleLight": "Kelly + Kayla Sync",
       "description": "Kelly + Kayla sync up on Slab Organization"
     },
     {
@@ -363,9 +363,9 @@
     },
     {
       "id": "custom-1776262623870",
-      "day": 0,
-      "startHour": 16,
-      "endHour": 17,
+      "day": 1,
+      "startHour": 10,
+      "endHour": 11,
       "category": "MEETING",
       "badge": null,
       "titleLight": "Steadfast Brand",
@@ -373,9 +373,9 @@
     },
     {
       "id": "custom-1776365470585",
-      "day": 1,
-      "startHour": 16.25,
-      "endHour": 17,
+      "day": 3,
+      "startHour": 11.5,
+      "endHour": 12.5,
       "category": "MEETING",
       "badge": null,
       "titleLight": "Leadership: Project Data",
@@ -1093,7 +1093,7 @@
       "presenters": [
         "kayla"
       ],
-      "timeLabel": "11:00 AM – 12:00 PM"
+      "timeLabel": "4:15 PM – 5:00 PM"
     },
     "custom-1775766236634": {
       "fullDescription": "Implementing AI",
@@ -1159,7 +1159,7 @@
         "kelly",
         "tori"
       ],
-      "timeLabel": "4:00 PM – 4:45 PM"
+      "timeLabel": "11:30 AM – 12:30 PM"
     },
     "custom-1776437898746": {
       "fullDescription": "Quick sync up on logistics for Wednesday",
