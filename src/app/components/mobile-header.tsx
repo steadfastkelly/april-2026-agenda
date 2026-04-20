@@ -1,66 +1,75 @@
-import { useRef, useCallback } from "react";
-import { useSchedule, getAllDetails } from "./schedule-context";
-import type { ScheduleEvent } from "./schedule-data";
-import type { EventDetail } from "./event-details";
+import { useState, useCallback } from "react";
+import { useSchedule } from "./schedule-context";
 
-function MobileExportImport() {
-  const { events, importState } = useSchedule();
-  const fileInputRef = useRef<HTMLInputElement>(null);
+type PublishState = "idle" | "publishing" | "success" | "error";
 
-  const handleExport = useCallback(() => {
-    const details = getAllDetails();
-    const blob = new Blob([JSON.stringify({ events, details }, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "team-week-schedule.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [events]);
+function MobilePublishButton() {
+  const { publish } = useSchedule();
+  const [state, setState] = useState<PublishState>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleImport = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try {
-        const data = JSON.parse(ev.target?.result as string) as {
-          events: ScheduleEvent[];
-          details?: Record<string, EventDetail>;
-        };
-        importState(data);
-      } catch { /* ignore */ }
-    };
-    reader.readAsText(file);
-    e.target.value = "";
-  }, [importState]);
+  const handlePublish = useCallback(async () => {
+    if (state === "publishing") return;
+    setState("publishing");
+    setErrorMsg("");
 
-  const btnStyle: React.CSSProperties = {
-    fontFamily: "'Inter', sans-serif",
-    fontSize: "10px",
-    fontWeight: 600,
-    letterSpacing: "1.2px",
-    color: "#c2ab74",
-    opacity: 0.7,
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    padding: 0,
-    textTransform: "uppercase" as const,
-  };
+    const result = await publish();
+
+    if (result.ok) {
+      setState("success");
+      setTimeout(() => setState("idle"), 3000);
+    } else {
+      setState("error");
+      setErrorMsg(result.error ?? "Publish failed");
+      setTimeout(() => setState("idle"), 4000);
+    }
+  }, [publish, state]);
+
+  const label =
+    state === "publishing" ? "Publishing…" :
+    state === "success"    ? "✓ Live for everyone" :
+    state === "error"      ? "✗ Failed" :
+    "↑ Publish";
+
+  const color =
+    state === "success" ? "#7ec87e" :
+    state === "error"   ? "#e07070" :
+    "#c2ab74";
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "6px" }}>
-      <button style={btnStyle} onClick={handleExport}>↓ Export</button>
-      <span style={{ color: "#3C434C", fontSize: "10px" }}>|</span>
-      <button style={btnStyle} onClick={() => fileInputRef.current?.click()}>↑ Import</button>
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".json,application/json"
-        onChange={handleImport}
-        style={{ display: "none" }}
-      />
+    <div style={{ marginTop: "6px" }}>
+      <button
+        onClick={handlePublish}
+        disabled={state === "publishing"}
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "10px",
+          fontWeight: 600,
+          letterSpacing: "1.2px",
+          textTransform: "uppercase",
+          color,
+          opacity: state === "publishing" ? 0.5 : 0.85,
+          background: "none",
+          border: "none",
+          cursor: state === "publishing" ? "default" : "pointer",
+          padding: 0,
+          transition: "color 0.2s, opacity 0.2s",
+        }}
+      >
+        {label}
+      </button>
+      {state === "error" && errorMsg && (
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "9px",
+          color: "#e07070",
+          opacity: 0.8,
+          margin: "2px 0 0",
+          lineHeight: 1.3,
+        }}>
+          {errorMsg}
+        </p>
+      )}
     </div>
   );
 }
@@ -68,7 +77,6 @@ function MobileExportImport() {
 export function MobileHeader() {
   return (
     <div className="px-[16px] pt-[16px] pb-[10px] shrink-0">
-      {/* Title — scales with viewport width */}
       <p
         className="text-white"
         style={{
@@ -81,7 +89,6 @@ export function MobileHeader() {
         Team Week Agenda
       </p>
 
-      {/* Subtitle with dates */}
       <p
         className="mt-[4px]"
         style={{
@@ -96,7 +103,7 @@ export function MobileHeader() {
         APRIL 20 – 24, 2026
       </p>
 
-      <MobileExportImport />
+      <MobilePublishButton />
     </div>
   );
 }

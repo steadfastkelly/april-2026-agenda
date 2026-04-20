@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
 import {
   events as initialEvents,
   type ScheduleEvent,
@@ -72,6 +72,8 @@ interface ScheduleContextValue {
   resetToDefaults: () => void;
   /** Replace all state with a previously-exported snapshot */
   importState: (data: { events: ScheduleEvent[]; details?: Record<string, EventDetail> }) => void;
+  /** Push current state to GitHub so everyone sees updates on next refresh */
+  publish: () => Promise<{ ok: boolean; error?: string }>;
 }
 
 const ScheduleContext = createContext<ScheduleContextValue | null>(null);
@@ -163,12 +165,50 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // ── Startup: load the last published schedule from the server ──────
+  // /schedule-data.json is updated by the Publish button (via /api/publish).
+  // Fetching it on mount means everyone always loads the most-recently-
+  // published version, even without a page-cache reload.
+  useEffect(() => {
+    fetch(`/schedule-data.json?v=${Date.now()}`, { cache: "no-store" })
+      .then((r) => { if (!r.ok) throw new Error("not found"); return r.json(); })
+      .then((data: { events?: ScheduleEvent[]; details?: Record<string, EventDetail> }) => {
+        if (!Array.isArray(data.events) || data.events.length === 0) return;
+        persistEvents(data.events);
+        setEvents(data.events);
+        if (data.details && typeof data.details === "object") {
+          Object.keys(runtimeDetails).forEach((k) => delete runtimeDetails[k]);
+          Object.assign(runtimeDetails, eventDetails);
+          Object.assign(runtimeDetails, data.details);
+          persistDetails();
+        }
+      })
+      .catch(() => { /* no published data yet — use localStorage/defaults */ });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Publish: write current state to GitHub via serverless function ─
+  const publish = useCallback(async (): Promise<{ ok: boolean; error?: string }> => {
+    const details = getAllDetails();
+    try {
+      const res = await fetch("/api/publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ events, details }),
+      });
+      const body = await res.json() as { ok?: boolean; error?: string };
+      if (!res.ok) return { ok: false, error: body.error ?? "Publish failed" };
+      return { ok: true };
+    } catch {
+      return { ok: false, error: "Network error — check your connection" };
+    }
+  }, [events]);
+
   return (
     <ScheduleContext.Provider value={{
       events, loading, addEvent, updateEvent, editFullEvent, deleteEvent,
       requestEdit, editingEventId, clearEditing,
       prefill, setPrefill,
-      resetToDefaults, importState,
+      resetToDefaults, importState, publish,
     }}>
       {children}
     </ScheduleContext.Provider>
