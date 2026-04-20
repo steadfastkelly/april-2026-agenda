@@ -27,7 +27,7 @@ function MobilePublishButton() {
 
   const label =
     state === "publishing" ? "Publishing…" :
-    state === "success"    ? "✓ Live for everyone" :
+    state === "success"    ? "✓ Saved — refresh to see" :
     state === "error"      ? "✗ Failed" :
     "↑ Publish";
 

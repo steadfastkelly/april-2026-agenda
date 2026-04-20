@@ -28,7 +28,7 @@ function PublishButton() {
 
   const label =
     state === "publishing" ? "Publishing…" :
-    state === "success"    ? "✓ Live for everyone" :
+    state === "success"    ? "✓ Saved — others refresh to see" :
     state === "error"      ? "✗ Failed" :
     "↑ Publish";
 
