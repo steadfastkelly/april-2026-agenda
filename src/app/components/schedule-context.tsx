@@ -32,6 +32,11 @@ export function registerEventDetail(id: string, detail: EventDetail) {
   runtimeDetails[id] = detail;
 }
 
+/** Returns a snapshot of all currently-live event details */
+export function getAllDetails(): Record<string, EventDetail> {
+  return { ...runtimeDetails };
+}
+
 // ── Persistence helpers ────────────────────────────────────────────
 function loadEvents(): ScheduleEvent[] {
   try {
@@ -65,6 +70,8 @@ interface ScheduleContextValue {
   setPrefill: (data: { day: number; startHour: number } | null) => void;
   /** Wipe localStorage and restore hardcoded defaults */
   resetToDefaults: () => void;
+  /** Replace all state with a previously-exported snapshot */
+  importState: (data: { events: ScheduleEvent[]; details?: Record<string, EventDetail> }) => void;
 }
 
 const ScheduleContext = createContext<ScheduleContextValue | null>(null);
@@ -144,12 +151,24 @@ export function ScheduleProvider({ children }: { children: ReactNode }) {
     setEvents(initialEvents);
   }, []);
 
+  const importState = useCallback((data: { events: ScheduleEvent[]; details?: Record<string, EventDetail> }) => {
+    if (!Array.isArray(data.events)) return;
+    persistEvents(data.events);
+    setEvents(data.events);
+    if (data.details && typeof data.details === "object") {
+      Object.keys(runtimeDetails).forEach((k) => delete runtimeDetails[k]);
+      Object.assign(runtimeDetails, eventDetails); // start from static defaults
+      Object.assign(runtimeDetails, data.details); // layer imported details on top
+      persistDetails();
+    }
+  }, []);
+
   return (
     <ScheduleContext.Provider value={{
       events, loading, addEvent, updateEvent, editFullEvent, deleteEvent,
       requestEdit, editingEventId, clearEditing,
       prefill, setPrefill,
-      resetToDefaults,
+      resetToDefaults, importState,
     }}>
       {children}
     </ScheduleContext.Provider>
