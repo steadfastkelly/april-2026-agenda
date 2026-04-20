@@ -44,14 +44,26 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(9, 10),
     location: "The Loading Dock",
   },
+  "mon-steadfast-sync": {
+    fullDescription: "Steadfast Site Sync Up meeting.",
+    requiredAttendees: everyone,
+    timeLabel: formatTimeRange(10, 11),
+    location: "The Loading Dock",
+  },
   "mon-2": {
     fullDescription: "Dedicated production block. Work on active project deliverables.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(10, 12),
     location: "The Loading Dock",
   },
+  "mon-photoshoot-sync": {
+    fullDescription: "Photoshoot Sync Up meeting.",
+    requiredAttendees: everyone,
+    timeLabel: formatTimeRange(11, 12),
+    location: "The Loading Dock",
+  },
   "mon-3": {
-    fullDescription: "Lunch catered and brought into the Loading Docks.",
+    fullDescription: "Salad + Pizza catered and brought into the Loading Docks.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(12, 13),
     location: "The Loading Dock",
@@ -63,7 +75,7 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(13, 14),
   },
   "mon-5": {
-    fullDescription: "Team block and meetings focused on Implementing AI across projects and workflows.",
+    fullDescription: "All Teams meeting block focused on Implementing AI across projects and workflows.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(14, 15.5),
     location: "The Loading Dock",
@@ -71,6 +83,12 @@ export const eventDetails: Record<string, EventDetail> = {
   "mon-6": {
     fullDescription: "Afternoon production block. Continue working on active deliverables.",
     requiredAttendees: everyone,
+    timeLabel: formatTimeRange(15.5, 17),
+    location: "The Loading Dock",
+  },
+  "custom-1775744078510": {
+    fullDescription: "Design team meeting — Internal Review Delegation.",
+    requiredAttendees: ["kelly", "kayla", "joy", "jen", "rachel", "miranda", "carson", "jack", "ben"],
     timeLabel: formatTimeRange(15.5, 17),
     location: "The Loading Dock",
   },
@@ -90,7 +108,7 @@ export const eventDetails: Record<string, EventDetail> = {
 
   // ─── Tuesday 4/21 ────────────────────────────────────────────────
   "tue-1": {
-    fullDescription: "Breakfast catered and brought into the Loading Docks.",
+    fullDescription: "Assorted breakfast catered and brought into the Loading Docks.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(9, 10),
     location: "The Loading Dock",
@@ -101,20 +119,26 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(10, 11),
     location: "The Loading Dock",
   },
+  "custom-1775744166226": {
+    fullDescription: "Kelly + Kayla: Slab Organization.",
+    requiredAttendees: ["kelly", "kayla"],
+    timeLabel: formatTimeRange(10, 11),
+    location: "The Loading Dock",
+  },
   "tue-3a": {
-    fullDescription: "Design + Dev team meeting — Boilerplate.",
+    fullDescription: "Design + Dev team meeting — Boilerplate 5.0.",
     requiredAttendees: ["kelly", "kayla", "joy", "jen", "rachel", "miranda", "carson", "jack", "ben"],
     timeLabel: formatTimeRange(11, 12.5),
     location: "The Loading Dock",
   },
   "tue-3b": {
-    fullDescription: "AM team meeting — Boilerplate.",
+    fullDescription: "AM team meeting — Project Scopes.",
     requiredAttendees: ["jake", "brittney", "rebecca"],
     timeLabel: formatTimeRange(11, 12.5),
     location: "The Loading Dock",
   },
   "tue-4": {
-    fullDescription: "Lunch catered and brought into the Loading Docks.",
+    fullDescription: "Over the Falls catered and brought into the Loading Docks.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(12.5, 13.5),
     location: "The Loading Dock",
@@ -126,7 +150,7 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(13.5, 14),
   },
   "tue-6": {
-    fullDescription: "All-team meeting block — agenda TBD.",
+    fullDescription: "All Teams meeting block — Process.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(14, 15.5),
     location: "The Loading Dock",
@@ -137,6 +161,12 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(15.5, 17),
     location: "The Loading Dock",
   },
+  "tue-leadership": {
+    fullDescription: "Leadership meeting — Project Data.",
+    requiredAttendees: ["taylor", "tori", "jake", "rebecca"],
+    timeLabel: formatTimeRange(15.5, 17),
+    location: "The Loading Dock",
+  },
   "tue-8": {
     fullDescription: "One-hour break before dinner.",
     requiredAttendees: [],
@@ -144,7 +174,7 @@ export const eventDetails: Record<string, EventDetail> = {
     timeLabel: formatTimeRange(17, 18),
   },
   "tue-9": {
-    fullDescription: "Dinner at the Airbnb Townhouse with charcuterie.",
+    fullDescription: "Dinner at the Airbnb Townhouse — Charcuteri (aka CharcuTori).",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(18, 21),
     location: "Airbnb Townhouse",
@@ -152,6 +182,12 @@ export const eventDetails: Record<string, EventDetail> = {
   },
 
   // ─── Wednesday 4/22 ──────────────────────────────────────────────
+  "custom-1775683626162": {
+    fullDescription: "On your own for breakfast this morning — grab what you like!",
+    requiredAttendees: [],
+    optionalAttendees: everyone,
+    timeLabel: formatTimeRange(9, 10),
+  },
   "wed-1": {
     fullDescription: "Morning team photo session at Three Oaks Studio.",
     requiredAttendees: everyone,
@@ -160,7 +196,7 @@ export const eventDetails: Record<string, EventDetail> = {
     locationNote: "745 Merritt Capital Dr #102, Wake Forest, NC 27587",
   },
   "wed-2": {
-    fullDescription: "Lunch brought into the studio.",
+    fullDescription: "Sandwich + Salad Platters brought into the studio.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(12, 13),
     location: "Three Oaks Studio",
@@ -195,19 +231,19 @@ export const eventDetails: Record<string, EventDetail> = {
 
   // ─── Thursday 4/23 ───────────────────────────────────────────────
   "thu-1": {
-    fullDescription: "Final Team Week breakfast brought into the Loading Docks.",
+    fullDescription: "Bojangles + Chick-Fil-a brought into the Loading Docks.",
     requiredAttendees: everyone,
     timeLabel: formatTimeRange(9, 10),
     location: "The Loading Dock",
   },
   "thu-2a": {
-    fullDescription: "Design + Dev team meeting — Split Teams.",
+    fullDescription: "Design team meeting — Review Ownership & the Critique Ladder.",
     requiredAttendees: ["kelly", "kayla", "joy", "jen", "rachel", "miranda", "carson", "jack", "ben"],
     timeLabel: formatTimeRange(10, 11.5),
     location: "The Loading Dock",
   },
   "thu-2b": {
-    fullDescription: "AM team meeting — Split Teams.",
+    fullDescription: "AM team meeting.",
     requiredAttendees: ["jake", "brittney", "rebecca"],
     timeLabel: formatTimeRange(10, 11.5),
     location: "The Loading Dock",
