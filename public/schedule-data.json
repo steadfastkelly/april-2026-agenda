@@ -1,1 +1,1174 @@
-{}
+{
+  "events": [
+    {
+      "id": "mon-1",
+      "day": 0,
+      "startHour": 9,
+      "endHour": 10,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Breakfast + Welcome",
+      "description": "Breakfast + Welcome to kick off Team Week. Catered spread brought into the Loading Docks.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock\n 525 S White St, Wake Forest, NC 27587"
+    },
+    {
+      "id": "mon-2",
+      "day": 0,
+      "startHour": 10,
+      "endHour": 12,
+      "category": "PRODUCTION",
+      "badge": null,
+      "titleLight": "Production",
+      "hideTitle": true,
+      "description": "Dedicated production block. Work on active project deliverables.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "mon-3",
+      "day": 0,
+      "startHour": 12,
+      "endHour": 13,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Salad + Pizza",
+      "description": "Lunch catered and brought into the Loading Docks.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "mon-4",
+      "day": 0,
+      "startHour": 13,
+      "endHour": 14,
+      "category": "BREAK",
+      "badge": null,
+      "titleLight": "Break",
+      "hideTitle": true,
+      "description": "Short break — 30 to 45 minutes. Step outside, grab a coffee, or recharge."
+    },
+    {
+      "id": "mon-6",
+      "day": 0,
+      "startHour": 15.5,
+      "endHour": 17,
+      "category": "PRODUCTION",
+      "badge": null,
+      "titleLight": "Production",
+      "hideTitle": true,
+      "description": "Afternoon production block. Continue working on active deliverables.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "mon-7",
+      "day": 0,
+      "startHour": 17,
+      "endHour": 18,
+      "category": "BREAK",
+      "badge": null,
+      "titleLight": "Break",
+      "hideTitle": true,
+      "description": "One-hour break before dinner. Head to the Airbnb to freshen up."
+    },
+    {
+      "id": "mon-8",
+      "day": 0,
+      "startHour": 18,
+      "endHour": 21,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Salt + Lime Catered",
+      "description": "Dinner catered by Salt + Lime at the Airbnb Townhouse.",
+      "locationLabel": "Location:",
+      "locationAddress": "Airbnb Townhouse\n409 Rally Point Place, Wake Forest, NC 27587"
+    },
+    {
+      "id": "tue-1",
+      "day": 1,
+      "startHour": 9,
+      "endHour": 10,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Assorted Breakfast",
+      "description": "Breakfast catered and brought into the Loading Docks.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "tue-2",
+      "day": 1,
+      "startHour": 10,
+      "endHour": 11,
+      "category": "PRODUCTION",
+      "badge": null,
+      "titleLight": "Production",
+      "hideTitle": true,
+      "description": "Morning production block. Focus on active project work.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "tue-3a",
+      "day": 1,
+      "startHour": 11,
+      "endHour": 12.5,
+      "category": "MEETING",
+      "badge": "DES",
+      "titleLight": "Design + Dev: Boilerplate 5.0",
+      "description": "Carson will give everyone a look under the Boilerplate 5.0 hood."
+    },
+    {
+      "id": "tue-3b",
+      "day": 1,
+      "startHour": 11,
+      "endHour": 12.5,
+      "category": "MEETING",
+      "badge": "AM",
+      "titleLight": "AM Team: Project Scopes",
+      "description": "Project scopes"
+    },
+    {
+      "id": "tue-4",
+      "day": 1,
+      "startHour": 12.5,
+      "endHour": 13.5,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Over the Falls Catered",
+      "description": "Lunch catered and brought into the Loading Docks.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "tue-5",
+      "day": 1,
+      "startHour": 13.5,
+      "endHour": 14,
+      "category": "BREAK",
+      "badge": null,
+      "titleLight": "Break",
+      "hideTitle": true,
+      "description": "Short break — 30 to 45 minutes. Step away and recharge."
+    },
+    {
+      "id": "tue-6",
+      "day": 1,
+      "startHour": 14,
+      "endHour": 15.5,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "All Teams: Process",
+      "description": "All-team meeting block — agenda TBD."
+    },
+    {
+      "id": "tue-7",
+      "day": 1,
+      "startHour": 15.5,
+      "endHour": 17,
+      "category": "PRODUCTION",
+      "badge": null,
+      "titleLight": "Production",
+      "hideTitle": true,
+      "description": "Afternoon production block. Wrap up deliverables for the day.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "tue-8",
+      "day": 1,
+      "startHour": 17,
+      "endHour": 18,
+      "category": "BREAK",
+      "badge": null,
+      "titleLight": "Break",
+      "hideTitle": true,
+      "description": "One-hour break before dinner."
+    },
+    {
+      "id": "tue-9",
+      "day": 1,
+      "startHour": 18,
+      "endHour": 21,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Charcuteri (aka CharcuTori)",
+      "description": "Dinner at the Airbnb Townhouse with charcuterie.",
+      "locationLabel": "Location:",
+      "locationAddress": "Airbnb Townhouse\n409 Rally Point Place, Wake Forest, NC 27587"
+    },
+    {
+      "id": "wed-1",
+      "day": 2,
+      "startHour": 10,
+      "endHour": 12,
+      "category": "TEAM BUILDING",
+      "badge": null,
+      "titleLight": "Team Pictures",
+      "locationLabel": "Location:",
+      "locationAddress": "Three Oaks Studio\n745 Merritt Capital Dr #102\nWake Forest, NC 27587"
+    },
+    {
+      "id": "wed-2",
+      "day": 2,
+      "startHour": 12,
+      "endHour": 13,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Sandwich + Salad Platters",
+      "description": "Lunch brought into the studio.",
+      "locationLabel": "Location:",
+      "locationAddress": "Three Oaks Studio"
+    },
+    {
+      "id": "wed-3",
+      "day": 2,
+      "startHour": 13,
+      "endHour": 15,
+      "category": "TEAM BUILDING",
+      "badge": null,
+      "titleLight": "Team Pictures",
+      "locationLabel": "Location:",
+      "locationAddress": "Three Oaks Studio\n745 Merritt Capital Dr #102\nWake Forest, NC 27587"
+    },
+    {
+      "id": "wed-4",
+      "day": 2,
+      "startHour": 15,
+      "endHour": 17,
+      "category": "TEAM BUILDING",
+      "badge": null,
+      "titleLight": "Team Outing: Bowling",
+      "description": "Team outing — bowling at Strike and Barrel!",
+      "locationLabel": "Location:",
+      "locationAddress": "Strike and Barrel\n413 S Brooks St, Wake Forest, NC 27587"
+    },
+    {
+      "id": "wed-5",
+      "day": 2,
+      "startHour": 17,
+      "endHour": 18,
+      "category": "BREAK",
+      "badge": null,
+      "titleLight": "Break",
+      "hideTitle": true,
+      "description": "One-hour break before dinner."
+    },
+    {
+      "id": "wed-6",
+      "day": 2,
+      "startHour": 18,
+      "endHour": 21,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Dinner at Franko's",
+      "description": "Dinner out at Franko's Italian Steakhouse.",
+      "locationLabel": "Location:",
+      "locationAddress": "Franko's Italian Steakhouse\n27 S Main St, Franklinton, NC 27525"
+    },
+    {
+      "id": "thu-1",
+      "day": 3,
+      "startHour": 9,
+      "endHour": 10,
+      "category": "MEAL",
+      "badge": null,
+      "titleLight": "Bojangles + Chick-Fil-a",
+      "description": "Final Team Week breakfast brought into the Loading Docks.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "thu-2a",
+      "day": 3,
+      "startHour": 10,
+      "endHour": 11.5,
+      "category": "MEETING",
+      "badge": "DES",
+      "titleLight": "Design Team: Review Ownership & the Critique Ladder",
+      "description": "This session would be about making review a shared system, not a bottleneck."
+    },
+    {
+      "id": "thu-2b",
+      "day": 3,
+      "startHour": 10,
+      "endHour": 11.5,
+      "category": "MEETING",
+      "badge": "AM",
+      "titleLight": "AM Team",
+      "description": "Subject TBD"
+    },
+    {
+      "id": "thu-3",
+      "day": 3,
+      "startHour": 11.5,
+      "endHour": 12.5,
+      "category": "PRODUCTION",
+      "badge": null,
+      "titleLight": "Production",
+      "hideTitle": true,
+      "description": "Final production block of Team Week. Wrap up any outstanding items.",
+      "locationLabel": "Location:",
+      "locationAddress": "The Loading Dock"
+    },
+    {
+      "id": "thu-4",
+      "day": 3,
+      "startHour": 12.5,
+      "endHour": 21,
+      "category": "END",
+      "badge": null,
+      "title": "Team Week Ends",
+      "hideTypeLabel": true
+    },
+    {
+      "id": "custom-1775766191174",
+      "day": 1,
+      "startHour": 10,
+      "endHour": 11,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "Kelly + Kayla: Slab Organization",
+      "description": "Kelly + Kayla sync up on Slab Organization"
+    },
+    {
+      "id": "custom-1775766236634",
+      "day": 0,
+      "startHour": 14,
+      "endHour": 15.5,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "All Teams: Implementing AI",
+      "description": "Implementing AI"
+    },
+    {
+      "id": "custom-1775766362856",
+      "day": 1,
+      "startHour": 15.5,
+      "endHour": 16.25,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "Design: Review Delegation",
+      "description": "Looking at how design review can change in 2026. We'll chat with Tori about what projects make sense for delegating review moving forward."
+    },
+    {
+      "id": "custom-1775766669239",
+      "day": 2,
+      "startHour": 9,
+      "endHour": 10,
+      "category": "BREAK",
+      "badge": null,
+      "titleLight": "Get Your Own Breakfast"
+    },
+    {
+      "id": "custom-1776262623870",
+      "day": 0,
+      "startHour": 16,
+      "endHour": 17,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "Steadfast Brand",
+      "description": "Steadfast Site Sync Up"
+    },
+    {
+      "id": "custom-1776365470585",
+      "day": 1,
+      "startHour": 16.25,
+      "endHour": 17,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "Leadership: Project Data",
+      "description": "Project tracking process chat"
+    },
+    {
+      "id": "custom-1776437898746",
+      "day": 0,
+      "startHour": 11,
+      "endHour": 12,
+      "category": "MEETING",
+      "badge": null,
+      "titleLight": "Photoshoot Sync Up",
+      "description": "Quick sync up on logistics for Wednesday"
+    }
+  ],
+  "details": {
+    "mon-1": {
+      "fullDescription": "Breakfast + Welcome to kick off Team Week. Catered spread brought into the Loading Docks.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "9:00 AM – 10:00 AM",
+      "location": "The Loading Dock",
+      "locationNote": " 525 S White St, Wake Forest, NC 27587"
+    },
+    "mon-steadfast-sync": {
+      "fullDescription": "Steadfast Site Sync Up meeting.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "10:00 AM – 11:00 AM",
+      "location": "The Loading Dock"
+    },
+    "mon-2": {
+      "fullDescription": "Dedicated production block. Work on active project deliverables.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "10:00 AM – 12:00 PM",
+      "location": "The Loading Dock"
+    },
+    "mon-photoshoot-sync": {
+      "fullDescription": "Photoshoot Sync Up meeting.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "11:00 AM – 12:00 PM",
+      "location": "The Loading Dock"
+    },
+    "mon-3": {
+      "fullDescription": "Lunch catered and brought into the Loading Docks.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "12:00 PM – 1:00 PM",
+      "location": "The Loading Dock"
+    },
+    "mon-4": {
+      "fullDescription": "Short break — 30 to 45 minutes. Step outside, grab a coffee, or recharge.",
+      "requiredAttendees": [],
+      "optionalAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "1:00 PM – 2:00 PM"
+    },
+    "mon-5": {
+      "fullDescription": "Team block and meetings focused on Implementing AI across projects and workflows.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "2:00 PM – 3:30 PM",
+      "location": "The Loading Dock"
+    },
+    "mon-6": {
+      "fullDescription": "Afternoon production block. Continue working on active deliverables.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "3:30 PM – 5:00 PM",
+      "location": "The Loading Dock"
+    },
+    "custom-1775744078510": {
+      "fullDescription": "Design team meeting — Internal Review Delegation.",
+      "requiredAttendees": [
+        "kelly",
+        "kayla",
+        "joy",
+        "jen",
+        "rachel",
+        "miranda",
+        "carson",
+        "jack",
+        "ben"
+      ],
+      "timeLabel": "3:30 PM – 5:00 PM",
+      "location": "The Loading Dock"
+    },
+    "mon-7": {
+      "fullDescription": "One-hour break before dinner. Head to the Airbnb to freshen up.",
+      "requiredAttendees": [],
+      "optionalAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "5:00 PM – 6:00 PM"
+    },
+    "mon-8": {
+      "fullDescription": "Dinner catered by Salt + Lime at the Airbnb Townhouse.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "6:00 PM – 9:00 PM",
+      "location": "Airbnb Townhouse",
+      "locationNote": "409 Rally Point Place, Wake Forest, NC 27587"
+    },
+    "tue-1": {
+      "fullDescription": "Breakfast catered and brought into the Loading Docks.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "9:00 AM – 10:00 AM",
+      "location": "The Loading Dock"
+    },
+    "tue-2": {
+      "fullDescription": "Morning production block. Focus on active project work.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "10:00 AM – 11:00 AM",
+      "location": "The Loading Dock"
+    },
+    "custom-1775744166226": {
+      "fullDescription": "Kelly + Kayla: Slab Organization.",
+      "requiredAttendees": [
+        "kelly",
+        "kayla"
+      ],
+      "timeLabel": "10:00 AM – 11:00 AM",
+      "location": "The Loading Dock"
+    },
+    "tue-3a": {
+      "fullDescription": "Carson will give everyone a look under the Boilerplate 5.0 hood.",
+      "requiredAttendees": [
+        "kayla",
+        "joy",
+        "jen",
+        "rachel",
+        "miranda",
+        "carson",
+        "jack",
+        "ben"
+      ],
+      "presenters": [
+        "carson",
+        "kayla"
+      ],
+      "timeLabel": "11:00 AM – 12:30 PM"
+    },
+    "tue-3b": {
+      "fullDescription": "Project scopes",
+      "requiredAttendees": [
+        "jake",
+        "brittney",
+        "rebecca",
+        "taylor",
+        "tori",
+        "kelly"
+      ],
+      "presenters": [
+        "jake"
+      ],
+      "timeLabel": "11:00 AM – 12:30 PM"
+    },
+    "tue-4": {
+      "fullDescription": "Lunch catered and brought into the Loading Docks.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "12:30 PM – 1:30 PM",
+      "location": "The Loading Dock"
+    },
+    "tue-5": {
+      "fullDescription": "Short break — 30 to 45 minutes. Step away and recharge.",
+      "requiredAttendees": [],
+      "optionalAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "1:30 PM – 2:00 PM"
+    },
+    "tue-6": {
+      "fullDescription": "All-team meeting block — agenda TBD.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "presenters": [
+        "jake",
+        "kelly"
+      ],
+      "timeLabel": "2:00 PM – 3:30 PM"
+    },
+    "tue-7": {
+      "fullDescription": "Afternoon production block. Wrap up deliverables for the day.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "3:30 PM – 5:00 PM",
+      "location": "The Loading Dock"
+    },
+    "tue-leadership": {
+      "fullDescription": "Leadership meeting — Project Data.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca"
+      ],
+      "timeLabel": "3:30 PM – 5:00 PM",
+      "location": "The Loading Dock"
+    },
+    "tue-8": {
+      "fullDescription": "One-hour break before dinner.",
+      "requiredAttendees": [],
+      "optionalAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "5:00 PM – 6:00 PM"
+    },
+    "tue-9": {
+      "fullDescription": "Dinner at the Airbnb Townhouse with charcuterie.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "6:00 PM – 9:00 PM",
+      "location": "Airbnb Townhouse",
+      "locationNote": "409 Rally Point Place, Wake Forest, NC 27587"
+    },
+    "custom-1775683626162": {
+      "fullDescription": "On your own for breakfast this morning — grab what you like!",
+      "requiredAttendees": [],
+      "optionalAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "9:00 AM – 10:00 AM"
+    },
+    "wed-1": {
+      "fullDescription": "Morning team photo session at Three Oaks Studio.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "10:00 AM – 12:00 PM",
+      "location": "Three Oaks Studio",
+      "locationNote": "745 Merritt Capital Dr #102, Wake Forest, NC 27587"
+    },
+    "wed-2": {
+      "fullDescription": "Lunch brought into the studio.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "12:00 PM – 1:00 PM",
+      "location": "Three Oaks Studio"
+    },
+    "wed-3": {
+      "fullDescription": "Afternoon team photo session at Three Oaks Studio.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "1:00 PM – 3:00 PM",
+      "location": "Three Oaks Studio",
+      "locationNote": "745 Merritt Capital Dr #102, Wake Forest, NC 27587"
+    },
+    "wed-4": {
+      "fullDescription": "Team outing — bowling at Strike and Barrel!",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "3:00 PM – 5:00 PM",
+      "location": "Strike and Barrel",
+      "locationNote": "413 S Brooks St, Wake Forest, NC 27587"
+    },
+    "wed-5": {
+      "fullDescription": "One-hour break before dinner.",
+      "requiredAttendees": [],
+      "optionalAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "5:00 PM – 6:00 PM"
+    },
+    "wed-6": {
+      "fullDescription": "Dinner out at Franko's Italian Steakhouse.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "6:00 PM – 9:00 PM",
+      "location": "Franko's Italian Steakhouse",
+      "locationNote": "27 S Main St, Franklinton, NC 27525"
+    },
+    "thu-1": {
+      "fullDescription": "Final Team Week breakfast brought into the Loading Docks.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "9:00 AM – 10:00 AM",
+      "location": "The Loading Dock"
+    },
+    "thu-2a": {
+      "fullDescription": "This session would be about making review a shared system, not a bottleneck.",
+      "requiredAttendees": [
+        "kelly",
+        "kayla",
+        "joy",
+        "rachel",
+        "miranda",
+        "carson",
+        "jack"
+      ],
+      "presenters": [
+        "kelly"
+      ],
+      "timeLabel": "10:00 AM – 11:30 AM"
+    },
+    "thu-2b": {
+      "fullDescription": "Subject TBD",
+      "requiredAttendees": [
+        "jake",
+        "brittney",
+        "rebecca"
+      ],
+      "presenters": [
+        "jake"
+      ],
+      "timeLabel": "10:00 AM – 11:30 AM"
+    },
+    "thu-3": {
+      "fullDescription": "Final production block of Team Week. Wrap up any outstanding items.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "11:30 AM – 12:30 PM",
+      "location": "The Loading Dock"
+    },
+    "thu-4": {
+      "fullDescription": "That's a wrap on Team Week! Safe travels home, everyone.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "12:30 PM – 9:00 PM"
+    },
+    "custom-1775766191174": {
+      "fullDescription": "Kelly + Kayla sync up on Slab Organization",
+      "requiredAttendees": [
+        "kelly",
+        "kayla"
+      ],
+      "presenters": [
+        "kayla"
+      ],
+      "timeLabel": "11:00 AM – 12:00 PM"
+    },
+    "custom-1775766236634": {
+      "fullDescription": "Implementing AI",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "kelly",
+        "kayla",
+        "joy",
+        "jen",
+        "rachel",
+        "miranda",
+        "carson",
+        "jack",
+        "ben",
+        "brittney",
+        "rebecca"
+      ],
+      "presenters": [
+        "kelly",
+        "jake"
+      ],
+      "timeLabel": "2:00 PM – 3:30 PM"
+    },
+    "custom-1775766362856": {
+      "fullDescription": "Looking at how design review can change in 2026. We'll chat with Tori about what projects make sense for delegating review moving forward.",
+      "requiredAttendees": [
+        "tori",
+        "kelly",
+        "kayla",
+        "joy",
+        "miranda"
+      ],
+      "presenters": [
+        "kelly"
+      ],
+      "timeLabel": "3:30 PM – 4:15 PM"
+    },
+    "custom-1775766669239": {
+      "fullDescription": "Get Your Own Breakfast",
+      "requiredAttendees": [],
+      "timeLabel": "9:00 AM – 10:00 AM"
+    },
+    "custom-1776262623870": {
+      "fullDescription": "Steadfast Site Sync Up",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "kelly",
+        "joy"
+      ],
+      "presenters": [
+        "taylor"
+      ],
+      "timeLabel": "4:00 PM – 5:00 PM"
+    },
+    "custom-1776365470585": {
+      "fullDescription": "Project tracking process chat",
+      "requiredAttendees": [
+        "jake",
+        "kelly",
+        "tori"
+      ],
+      "timeLabel": "4:00 PM – 4:45 PM"
+    },
+    "custom-1776437898746": {
+      "fullDescription": "Quick sync up on logistics for Wednesday",
+      "requiredAttendees": [
+        "tori",
+        "kelly",
+        "jen"
+      ],
+      "timeLabel": "11:00 AM – 12:00 PM"
+    }
+  }
+}
