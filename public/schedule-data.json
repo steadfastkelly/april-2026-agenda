@@ -184,9 +184,9 @@
       "category": "MEAL",
       "badge": null,
       "titleLight": "Charcuteri (aka CharcuTori)",
-      "description": "Dinner at the Airbnb Townhouse with charcuterie.",
+      "description": "Dinner at the Tsantles residence with charcuterie. Hard stop at 9pm so everyone can wake up and be ready for the shoot tomorrow. Gate code in the group text.",
       "locationLabel": "Location:",
-      "locationAddress": "Airbnb Townhouse\n409 Rally Point Place, Wake Forest, NC 27587"
+      "locationAddress": "Tsantles Residence\n4828 Granite Lake Drive, Wake Forest, NC 27587"
     },
     {
       "id": "wed-1",
@@ -737,6 +737,27 @@
       ],
       "timeLabel": "1:30 PM – 2:00 PM"
     },
+    "tue-6": {
+      "fullDescription": "All Teams meeting block — Process.",
+      "requiredAttendees": [
+        "taylor",
+        "tori",
+        "jake",
+        "rebecca",
+        "brittney",
+        "ben",
+        "kayla",
+        "jen",
+        "rachel",
+        "carson",
+        "miranda",
+        "jack",
+        "joy",
+        "kelly"
+      ],
+      "timeLabel": "2:00 PM – 3:30 PM",
+      "location": "The Loading Dock"
+    },
     "tue-7": {
       "fullDescription": "Afternoon production block. Wrap up deliverables for the day.",
       "requiredAttendees": [
@@ -791,7 +812,7 @@
       "timeLabel": "5:00 PM – 6:00 PM"
     },
     "tue-9": {
-      "fullDescription": "Dinner at the Airbnb Townhouse with charcuterie.",
+      "fullDescription": "Dinner at the Tsantles residence with charcuterie. Hard stop at 9pm so everyone can wake up and be ready for the shoot tomorrow. Gate code in the group text.",
       "requiredAttendees": [
         "taylor",
         "tori",
@@ -809,8 +830,8 @@
         "kelly"
       ],
       "timeLabel": "6:00 PM – 9:00 PM",
-      "location": "Airbnb Townhouse",
-      "locationNote": "409 Rally Point Place, Wake Forest, NC 27587"
+      "location": "Tsantles Residence",
+      "locationNote": "4828 Granite Lake Drive, Wake Forest, NC 27587"
     },
     "custom-1775683626162": {
       "fullDescription": "On your own for breakfast this morning — grab what you like!",
