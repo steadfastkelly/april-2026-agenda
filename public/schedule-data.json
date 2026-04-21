@@ -153,20 +153,10 @@
       "description": "Short break — 30 to 45 minutes. Step away and recharge."
     },
     {
-      "id": "tue-6",
+      "id": "tue-7",
       "day": 1,
       "startHour": 14,
       "endHour": 15.5,
-      "category": "MEETING",
-      "badge": null,
-      "titleLight": "All Teams: Process",
-      "description": "All-team meeting block — agenda TBD."
-    },
-    {
-      "id": "tue-7",
-      "day": 1,
-      "startHour": 15.5,
-      "endHour": 17,
       "category": "PRODUCTION",
       "badge": null,
       "titleLight": "Production",
@@ -746,30 +736,6 @@
         "kelly"
       ],
       "timeLabel": "1:30 PM – 2:00 PM"
-    },
-    "tue-6": {
-      "fullDescription": "All-team meeting block — agenda TBD.",
-      "requiredAttendees": [
-        "taylor",
-        "tori",
-        "jake",
-        "rebecca",
-        "brittney",
-        "ben",
-        "kayla",
-        "jen",
-        "rachel",
-        "carson",
-        "miranda",
-        "jack",
-        "joy",
-        "kelly"
-      ],
-      "presenters": [
-        "jake",
-        "kelly"
-      ],
-      "timeLabel": "2:00 PM – 3:30 PM"
     },
     "tue-7": {
       "fullDescription": "Afternoon production block. Wrap up deliverables for the day.",
