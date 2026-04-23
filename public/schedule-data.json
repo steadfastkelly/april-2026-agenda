@@ -270,16 +270,6 @@
       "locationAddress": "The Loading Dock"
     },
     {
-      "id": "thu-2a",
-      "day": 3,
-      "startHour": 10,
-      "endHour": 11.5,
-      "category": "MEETING",
-      "badge": "DES",
-      "titleLight": "Design Team: Review Ownership & the Critique Ladder",
-      "description": "This session would be about making review a shared system, not a bottleneck."
-    },
-    {
       "id": "thu-2b",
       "day": 3,
       "startHour": 10,
@@ -1001,22 +991,6 @@
       ],
       "timeLabel": "9:00 AM – 10:00 AM",
       "location": "The Loading Dock"
-    },
-    "thu-2a": {
-      "fullDescription": "This session would be about making review a shared system, not a bottleneck.",
-      "requiredAttendees": [
-        "kelly",
-        "kayla",
-        "joy",
-        "rachel",
-        "miranda",
-        "carson",
-        "jack"
-      ],
-      "presenters": [
-        "kelly"
-      ],
-      "timeLabel": "10:00 AM – 11:30 AM"
     },
     "thu-2b": {
       "fullDescription": "Subject TBD",
